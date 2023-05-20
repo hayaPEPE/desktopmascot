@@ -6,7 +6,8 @@ using System.Windows.Forms;
 
 namespace desktopmascot
 {
-    internal static class Program
+    //internal static class Program
+    static class Program
     {
         /// <summary>
         /// アプリケーションのメイン エントリ ポイントです。
@@ -16,7 +17,17 @@ namespace desktopmascot
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            //Application.Run(new Form1());
+
+            Form1 form = new Form1();
+            form.Show();
+
+            //自分で作成したループを使用
+            while (form.Created)
+            {
+                form.MainLoop();
+                Application.DoEvents();
+            }
         }
     }
 }
