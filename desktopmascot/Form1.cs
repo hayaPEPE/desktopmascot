@@ -15,12 +15,18 @@ namespace desktopmascot
     public partial class Form1 : Form
     {
         private int _model_handle;
+
+        private int _attach_index;
+        private float _total_time;
+        private float _play_time = 0.0f;
+        private float _play_speed = 0.4f;
+        private int _motion_id = 0;
         public Form1()
         {
             InitializeComponent();
 
-            //画面サイズの設定（全画面）
-            ClientSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            //画面サイズの設定
+            ClientSize = new Size(Screen.PrimaryScreen.Bounds.Width / 3, Screen.PrimaryScreen.Bounds.Height / 3);
 
             //DXライブラリの初期設定全般
             //Log.txtを生成しないように設定
@@ -39,7 +45,12 @@ namespace desktopmascot
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);
 
             //3Dモデルの読み込み
-            this._model_handle = DX.MV1LoadModel("Models/Model1.pmx");
+            this._model_handle = DX.MV1LoadModel("Models/Model.pmx");
+
+            //モーションの選択（モデル名＋数字のアニメーションが自動で読み込まれる？）
+            this._attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);
+            //モーションのそう再生時間を取得
+            this._total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
 
             //カメラの設定
             //奥行0.1～1000をカメラの描画範囲とする
@@ -55,9 +66,18 @@ namespace desktopmascot
         {
             //裏画面を消す
             DX.ClearDrawScreen();
-
             //背景を設定（透過させる）
             DX.DrawBox(0, 0, Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height, DX.GetColor(1, 1, 1), DX.TRUE);
+
+            //時間を進める
+            this._play_time += _play_speed;
+            //モーションの再生位置が終端まで来たら最初に戻す
+            if (this._play_time >= this._total_time)
+            {
+                this._play_time = 2.5f;
+            }
+            //モーションの再生位置を設定
+            DX.MV1SetAttachAnimTime(this._model_handle, this._attach_index, this._play_time);
 
             //3Dモデルの描画
             DX.MV1DrawModel(this._model_handle);
