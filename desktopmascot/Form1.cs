@@ -106,5 +106,33 @@ namespace desktopmascot
             //透過色を設定
             TransparencyKey = Color.FromArgb(1, 1, 1);
         }
+
+        //マウスのクリック位置を記憶
+        private Point mousePoint;
+
+        //Form1のMouseDownイベントハンドラ
+        //マウスのボタンが押されたとき
+        private void Form1_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                //位置を記憶する
+                mousePoint = new Point(e.X, e.Y);
+            }
+        }
+
+        //Form1のMouseMoveイベントハンドラ
+        //マウスが動いたとき
+        private void Form1_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                this.Left += e.X - mousePoint.X;
+                this.Top += e.Y - mousePoint.Y;
+                //または、次のようにする
+                //this.Location.X = e.X - mousePoint.X,
+                //this.Location.Y = e.Y - mousePoint.Y);
+            }
+        }
     }
 }
