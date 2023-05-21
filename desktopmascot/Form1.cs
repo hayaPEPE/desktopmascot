@@ -18,8 +18,8 @@ namespace desktopmascot
 
         private int _attach_index;
         private float _total_time;
-        private float _play_time = 0.0f;
-        private float _play_speed = 0.4f;
+        private float _play_time = 6.0f;  //初めの再生箇所
+        private float _play_speed = 0.2f; //再生スピード
         private int _motion_id = 0;
         public Form1()
         {
@@ -74,7 +74,7 @@ namespace desktopmascot
             //モーションの再生位置が終端まで来たら最初に戻す
             if (this._play_time >= this._total_time)
             {
-                this._play_time = 2.5f;
+                this._play_time = 18.0f; //モーションが初めに戻るときに変になるのを防ぐため18.0fにしている
             }
             //モーションの再生位置を設定
             DX.MV1SetAttachAnimTime(this._model_handle, this._attach_index, this._play_time);
