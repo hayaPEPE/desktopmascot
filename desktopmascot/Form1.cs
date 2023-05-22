@@ -26,7 +26,7 @@ namespace desktopmascot
             InitializeComponent();
 
             //画面サイズの設定
-            ClientSize = new Size(Screen.PrimaryScreen.Bounds.Width / 3, Screen.PrimaryScreen.Bounds.Height / 3);
+            ClientSize = new Size(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
 
             //DXライブラリの初期設定全般
             //Log.txtを生成しないように設定
