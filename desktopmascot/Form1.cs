@@ -144,6 +144,7 @@ namespace desktopmascot
             {
                 
                 DX.MV1DetachAnim(this._model_handle, this._attach_index);//今まで再生していたモーションを解除
+
                 _motion_id = 1;  // ダブルクリック時に再生するモーションのIDを指定する
                 _play_time = 40.0f; // 40フレームから再生させる
                 _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);// ダブルクリック時のモーションを選択
@@ -152,6 +153,7 @@ namespace desktopmascot
             else
             {
                 DX.MV1DetachAnim(this._model_handle, this._attach_index);
+
                 _motion_id = 0;
                 _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);
                 _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
