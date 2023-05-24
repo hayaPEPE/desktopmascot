@@ -74,7 +74,11 @@ namespace desktopmascot
             //モーションの再生位置が終端まで来たら最初に戻す
             if (this._play_time >= this._total_time)
             {
+                if(this._motion_id == 0)
+                {
                 this._play_time = 18.0f; //モーションが初めに戻るときに変になるのを防ぐため18.0fにしている
+
+                }
             }
             //モーションの再生位置を設定
             DX.MV1SetAttachAnimTime(this._model_handle, this._attach_index, this._play_time);
@@ -144,8 +148,8 @@ namespace desktopmascot
             _motion_id = 1;  // ダブルクリック時に再生するモーションのIDを指定する
             _play_time = 40.0f; // 40フレームから再生させる
             _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);// ダブルクリック時のモーションを選択
-            _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index) - this._play_time ;
-            await Task.Delay((int)_total_time * 6);
+            _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index) - this._play_time;
+            await Task.Delay((int)_total_time * 6);　//どういう数字にすれば良いのかわからない
                 
             DX.MV1DetachAnim(this._model_handle, this._attach_index);
                 
