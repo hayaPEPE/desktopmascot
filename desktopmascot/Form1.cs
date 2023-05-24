@@ -149,7 +149,7 @@ namespace desktopmascot
             _play_time = 40.0f; // 40フレームから再生させる
             _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);// ダブルクリック時のモーションを選択
             _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index) - this._play_time;
-            await Task.Delay((int)_total_time * 6);　//どういう数字にすれば良いのかわからない
+            await Task.Delay((int)_total_time * 10);　//どういう数字にすれば良いのかわからない
                 
             DX.MV1DetachAnim(this._model_handle, this._attach_index);
                 
