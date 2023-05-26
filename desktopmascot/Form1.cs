@@ -158,11 +158,6 @@ namespace desktopmascot
             _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
