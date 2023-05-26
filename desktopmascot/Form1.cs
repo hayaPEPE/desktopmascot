@@ -19,7 +19,7 @@ namespace desktopmascot
         private int _attach_index;
         private float _total_time;
         private float _play_time = 6.0f;  //初めの再生箇所
-        private float _play_speed = 0.2f; //再生スピード
+        private float _play_speed = 0.5f; //再生スピード
         private int _motion_id = 0;
         public Form1()
         {
