@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 //DXライブラリのusing追加
 using DxLibDLL;
+using static DxLibDLL.DX;
 
 namespace desktopmascot
 {
@@ -24,7 +25,7 @@ namespace desktopmascot
         public Form1()
         {
             InitializeComponent();
-
+            DX.SetUseIMEFlag(1);
             //画面サイズの設定
             ClientSize = new Size(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
 
@@ -37,11 +38,11 @@ namespace desktopmascot
             DX.SetZBufferBitDepth(24);
             //裏画面のZバッファの深度を24bitに変更
             DX.SetCreateDrawValidGraphZBufferBitDepth(24);
-            //画面のフルスクリーンアンチエイリアンスモードの設定をする
+            //画面のフルスクリーンアンチエイリアンスモードの設定をする→なくてもいいかも
             DX.SetFullSceneAntiAliasingMode(4, 2);
             // DXライブラリの初期化処理
             DX.DxLib_Init();
-            //描画先を裏画面に設定
+            //描画先を裏画面に設定→なくてもいいかも
             DX.SetDrawScreen(DX.DX_SCREEN_BACK);
 
             //3Dモデルの読み込み
@@ -156,11 +157,6 @@ namespace desktopmascot
             _motion_id = 0;
             _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);
             _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
