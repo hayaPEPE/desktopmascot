@@ -165,11 +165,12 @@ namespace desktopmascot
 
             WebClient client = new WebClient();
             NameValueCollection collection = new NameValueCollection();
-            collection.Add("test","テストテスト");
-            collection.Add("test2", "テストテスト２");
-            byte[] resBytes = client.UploadValues("http://localhost:1880/test", collection);
+            collection.Add("test", "第一パラメータ");
+            collection.Add("test2", "第二パラメータ");
+            Uri url = new Uri("http://localhost:1880/test");
+
+            client.UploadValuesAsync(url, collection);
             client.Dispose();
-            Console.WriteLine(Encoding.UTF8.GetString(resBytes));
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
