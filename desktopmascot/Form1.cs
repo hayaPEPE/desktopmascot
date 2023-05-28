@@ -4,12 +4,16 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Web;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Collections.Specialized;
 //DXライブラリのusing追加
 using DxLibDLL;
 using static DxLibDLL.DX;
+using System.Net;
 
 namespace desktopmascot
 {
@@ -25,6 +29,7 @@ namespace desktopmascot
         public Form1()
         {
             InitializeComponent();
+            //IMEを使用するように設定
             DX.SetUseIMEFlag(1);
             //画面サイズの設定
             ClientSize = new Size(Screen.PrimaryScreen.Bounds.Width / 2, Screen.PrimaryScreen.Bounds.Height / 2);
@@ -157,6 +162,14 @@ namespace desktopmascot
             _motion_id = 0;
             _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);
             _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
+
+            WebClient client = new WebClient();
+            NameValueCollection collection = new NameValueCollection();
+            collection.Add("test","テストテスト");
+            collection.Add("test2", "テストテスト２");
+            byte[] resBytes = client.UploadValues("http://localhost:1880/test", collection);
+            client.Dispose();
+            Console.WriteLine(Encoding.UTF8.GetString(resBytes));
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
