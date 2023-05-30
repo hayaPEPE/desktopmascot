@@ -163,15 +163,6 @@ namespace desktopmascot
             _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);
             _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
 
-            //Node-REDのサーバにHTTPリクエストを送信
-            WebClient client = new WebClient();
-            NameValueCollection collection = new NameValueCollection();
-            collection.Add("test", "第一パラメータ");
-            collection.Add("test2", "第二パラメータ");
-            Uri url = new Uri("http://localhost:1880/test");
-
-            client.UploadValuesAsync(url, collection);
-            client.Dispose();
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
