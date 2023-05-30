@@ -163,6 +163,7 @@ namespace desktopmascot
             _attach_index = DX.MV1AttachAnim(this._model_handle, this._motion_id, -1, DX.FALSE);
             _total_time = DX.MV1GetAttachAnimTotalTime(this._model_handle, this._attach_index);
 
+            //Node-REDのサーバにHTTPリクエストを送信
             WebClient client = new WebClient();
             NameValueCollection collection = new NameValueCollection();
             collection.Add("test", "第一パラメータ");
@@ -176,6 +177,30 @@ namespace desktopmascot
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
+        }
+        // イベントハンドラの中でEnterキーが押されたかどうかをチェックする
+        private void textBox1_KeyPress(object sender, System.Windows.Forms.KeyPressEventArgs e)
+        {
+            // Enterキーが押された場合
+            if (e.KeyChar == (char)Keys.Return)
+            {
+                //テキストボックスの中身をNode-REDに送信する
+
+                //Node-REDのサーバにHTTPリクエストを送信
+                WebClient client = new WebClient();
+                NameValueCollection collection = new NameValueCollection();
+                collection.Add("message", $"{textBox1.Text}");
+                Uri url = new Uri("http://localhost:1880/test");
+
+                client.UploadValuesAsync(url, collection);
+                client.Dispose();
+
+                // テキストボックスの中身を空にする
+                textBox1.Text = "";
+
+                // Enterキーの入力を無効にする
+                e.Handled = true;
+            }
         }
     }
 }
