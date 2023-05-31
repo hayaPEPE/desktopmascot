@@ -175,6 +175,11 @@ namespace desktopmascot
             // Enterキーが押された場合
             if (e.KeyChar == (char)Keys.Return)
             {
+                //テキストボックスの中身が空の場合は何もしない
+                if (textBox1.Text == "")
+                {
+                    return;
+                }
                 //テキストボックスの中身をNode-REDに送信する
 
                 //Node-REDのサーバにHTTPリクエストを送信
