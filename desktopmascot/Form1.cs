@@ -14,6 +14,9 @@ using System.Collections.Specialized;
 using DxLibDLL;
 using static DxLibDLL.DX;
 using System.Net;
+using System.Media;
+using System.Net.Http.Headers;
+
 
 namespace desktopmascot
 {
@@ -180,6 +183,12 @@ namespace desktopmascot
                 {
                     return;
                 }
+
+                //読み込む
+                var player = new SoundPlayer("test.wav");
+                //再生する
+                player.PlaySync();
+                Console.WriteLine("再生完了");
                 //テキストボックスの中身をNode-REDに送信する
 
                 //Node-REDのサーバにHTTPリクエストを送信
