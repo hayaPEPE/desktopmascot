@@ -27,7 +27,7 @@ namespace desktopmascot
         private int _attach_index;
         private float _total_time;
         private float _play_time = 6.0f;  //初めの再生箇所
-        private float _play_speed = 0.2f; //再生スピード
+        private float _play_speed = 0.4f; //再生スピード
         private int _motion_id = 0;
         public Form1()
         {
@@ -185,10 +185,11 @@ namespace desktopmascot
                 }
 
                 //読み込む
-                var player = new SoundPlayer("test.wav");
+                //var player = new SoundPlayer("test.wav");
                 //再生する
-                player.PlaySync();
-                Console.WriteLine("再生完了");
+                //player.PlaySync();
+                //Console.WriteLine("再生完了");
+
                 //テキストボックスの中身をNode-REDに送信する
 
                 //Node-REDのサーバにHTTPリクエストを送信
